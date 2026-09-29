@@ -1,40 +1,93 @@
-// Lista dos números que já foram sorteados
+// Lista para guardar os números sorteados
 let numerosSorteados = [];
+
 
 // Pegando os elementos do HTML
 const botao = document.getElementById("sortear");
 const numero = document.getElementById("numero");
 const lista = document.getElementById("lista");
+const contador = document.getElementById("contador");
 
-// Função executada quando o botão é clicado
-botao.addEventListener("click", function() {
 
-    // Verifica se todos os 75 números já foram sorteados
-    if (numerosSorteados.length === 75) {
+// Função para sortear um número
+function sortearNumero() {
+
+    // Verifica se todos os números já foram sorteados
+    if (numerosSorteados.length >= 75) {
+
         alert("Todos os números já foram sorteados!");
+
         return;
     }
 
-    let numeroSorteado;
 
-    // Gera um número aleatório que ainda não foi sorteado
+    let novoNumero;
+
+
+    // Gera números até encontrar um que ainda não saiu
     do {
-        numeroSorteado = Math.floor(Math.random() * 75) + 1;
-    } while (numerosSorteados.includes(numeroSorteado));
 
-    // Adiciona o número à lista
-    numerosSorteados.push(numeroSorteado);
+        novoNumero =
+            Math.floor(Math.random() * 75) + 1;
 
-    // Mostra o número sorteado na tela
-    numero.textContent = numeroSorteado;
+    } while (numerosSorteados.includes(novoNumero));
 
-    // Cria um elemento para mostrar o número no histórico
-    const novoNumero = document.createElement("span");
 
-    novoNumero.textContent = numeroSorteado;
+    // Guarda o número
+    numerosSorteados.push(novoNumero);
 
-    novoNumero.classList.add("numero-sorteado");
 
-    // Adiciona o número à lista de sorteados
-    lista.appendChild(novoNumero);
-});
+    // Mostra o número na tela
+    numero.textContent = novoNumero;
+
+
+    // Reinicia a animação
+    numero.classList.remove("animar");
+
+    void numero.offsetWidth;
+
+    numero.classList.add("animar");
+
+
+    // Remove a mensagem inicial
+    const mensagem = document.querySelector(".vazio");
+
+    if (mensagem) {
+        mensagem.remove();
+    }
+
+
+    // Cria o número no histórico
+    const item = document.createElement("span");
+
+    item.classList.add("numero-sorteado");
+
+    item.textContent = novoNumero;
+
+
+    // Adiciona no histórico
+    lista.appendChild(item);
+
+
+    // Atualiza o contador
+    contador.textContent =
+        numerosSorteados.length +
+        " números sorteados";
+
+
+    // Desativa o botão quando chegar em 75
+    if (numerosSorteados.length === 75) {
+
+        botao.disabled = true;
+
+        botao.textContent =
+            "🎉 Todos os números foram sorteados";
+    }
+}
+
+
+// Quando clicar no botão
+botao.addEventListener(
+    "click",
+    sortearNumero
+);

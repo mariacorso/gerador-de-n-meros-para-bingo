@@ -4,34 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Jogo de Bingo</title>
+    <title>Bingo</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="container">
+    <main class="container">
 
-        <h1>🎱 Jogo de Bingo</h1>
+        <h1>🎱 Bingo</h1>
 
-        <p>Sortee um número de 1 a 75</p>
+        <p class="subtitulo">
+            Sorteie números de 1 a 75
+        </p>
 
-        <div class="numero" id="numero">
-            ?
-        </div>
+        <section class="card">
 
-        <button id="sortear">
-            Sortear número
-        </button>
+            <p class="titulo-numero">
+                NÚMERO SORTEADO
+            </p>
 
-        <h2>Números sorteados</h2>
+            <div id="numero" class="numero">
+                ?
+            </div>
 
-        <div id="lista"></div>
+            <button id="sortear">
+                🎲 Sortear número
+            </button>
 
-    </div>
+            <p id="contador" class="contador">
+                0 números sorteados
+            </p>
 
-    <script src="script.js"></script>
+        </section>
+
+        <section class="historico">
+
+            <h2>Histórico</h2>
+
+            <div id="lista" class="lista">
+                <p class="vazio">
+                    Nenhum número sorteado ainda.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="main.js"></script>
 
 </body>
 </html>
